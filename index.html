@@ -1,0 +1,47 @@
+<head>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script defer src="assets/js/main.js"></script>
+    <!-- <script defer src="https://thearchivum.com/Codepen/js/modernizr.custom.js"></script> -->
+    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <div class="container">
+        <section class="color-7" id="btn-click">
+            <p>
+					<button class="unlock-btn btn-7 btn-7h icon-envelope">Unlock</button>
+					<button class="unlock-btn btn-7 btn-7h icon-envelope">Unlock</button>
+				</p>
+
+			</section>
+        </div><!-- /container -->
+        
+		<script src="assets/js/classie.js"></script>
+		<script>
+			var buttons7Click = Array.prototype.slice.call( document.querySelectorAll( '#btn-click button' ) ),
+				buttons9Click = Array.prototype.slice.call( document.querySelectorAll( 'button.btn-8g' ) ),
+				totalButtons7Click = buttons7Click.length,
+				totalButtons9Click = buttons9Click.length;
+
+			buttons7Click.forEach( function( el, i ) { el.addEventListener( 'click', activate, false ); } );
+			buttons9Click.forEach( function( el, i ) { el.addEventListener( 'click', activate, false ); } );
+
+			function activate() {
+				var self = this, activatedClass = 'btn-activated';
+
+				if( classie.has( this, 'btn-7h' ) ) {
+					// if it is the first of the two btn-7h then activatedClass = 'btn-error';
+					// if it is the second then activatedClass = 'btn-success'
+					activatedClass = buttons7Click.indexOf( this ) === totalButtons7Click-2 ? 'btn-error' : 'btn-success';
+				}
+				if( !classie.has( this, activatedClass ) ) {
+					classie.add( this, activatedClass );
+					setTimeout( function() { classie.remove( self, activatedClass ) }, 1000 );
+				}
+			}
+			document.querySelector( '.btn-7i' ).addEventListener( 'click', function() {
+				classie.add( document.querySelector( '#trash-effect' ), 'trash-effect-active' );
+			}, false );
+		</script>
+	</body>
+</html>
